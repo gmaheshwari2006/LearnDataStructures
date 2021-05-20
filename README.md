@@ -1,2 +1,2 @@
-# LearnDataStructures
-LearnDataStructures
+# StudyDataStructures
+Study Data Structures here
