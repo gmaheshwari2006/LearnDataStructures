@@ -78,6 +78,23 @@ class customLinkedList {
       counter++;
     }
   }
+
+  remove(index) {
+    let counter = 0;
+    let currentNode = this.head;
+    while(counter != index) {
+    if(counter === index-1) {
+      let preNode = currentNode;
+      let nextNode = currentNode.next.next;
+      preNode.next = nextNode;
+       this.length--;
+      return;
+    } else {
+        currentNode = currentNode.next;
+    }
+    counter++;
+    }
+  }
 }
 
 const myLinkedList = new customLinkedList(10);
@@ -85,10 +102,11 @@ myLinkedList.append(5)
 myLinkedList.append(16)
 myLinkedList.prepend(1)
 myLinkedList.printList();
-//myLinkedList.insert(2, 99);
-//myLinkedList.insert(0, 11);
+myLinkedList.insert(2, 99);
+myLinkedList.insert(0, 11);
 myLinkedList.insert(40, 100);
 myLinkedList.printList();
 //console.log(myLinkedList);
-
+myLinkedList.remove(3);
+myLinkedList.printList();
 //1 10 5 16 
