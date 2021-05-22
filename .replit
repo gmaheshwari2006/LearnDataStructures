@@ -1,2 +1,2 @@
 language = "bash"
-run = "node linkedList/CustomLinkedList.js"
+run = "node linkedList/CustomDoublyLinkedList.js"

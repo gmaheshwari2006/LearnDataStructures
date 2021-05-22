@@ -1,15 +1,17 @@
 class Node {
   constructor(value) {   
       this.value = value;
-      this.next = null;    
+      this.next = null;  
+      this.prev = null;  
   }
 }
 
-class customLinkedList {
+class customDoublyLinkedList {
   constructor(value) {
     this.head = {
       value: value,
-      next: null
+      next: null,
+      prev: null
     }
     this.tail = this.head;
     this.length = 1;
@@ -19,10 +21,12 @@ class customLinkedList {
     const node = new Node(value);
     /*const node = {
       value: value,
-      next: null
+      next: null,
+      prev: null
     }*/
-    console.log('append', node.value);
+    //console.log('append', node.value);
     this.tail.next = node;
+    node.prev = this.tail;
     this.tail = node;
     this.length++;
   }
@@ -31,18 +35,20 @@ class customLinkedList {
     const node = new Node(value);
     /*const node = {
       value: value,
-      next: null
+      next: null,
+      prev: null
     }*/
     node.next = this.head;
+    this.head.prev = node;
     this.head = node;
     this.length++;
   }
-
+ 
   printList() {
     const array = [];
     let currentNode = this.head;
     while(currentNode != null) {
-      console.log('currentNode', currentNode);
+      //console.log('currentNode', currentNode);
       array.push(currentNode.value);
       currentNode = currentNode.next;
     }
@@ -69,10 +75,11 @@ class customLinkedList {
         let nextNode = currentNode.next; 
         currentNode.next = node;
         node.next = nextNode;
+        node.prev = currentNode;
+        nextNode.prev = node;
         this.length++;
         break;
-      } else {
-       
+      } else {       
         currentNode = currentNode.next;
       }
       counter++;
@@ -87,6 +94,7 @@ class customLinkedList {
       let preNode = currentNode;
       let nextNode = currentNode.next.next;
       preNode.next = nextNode;
+      nextNode.prev = preNode;
        this.length--;
       return;
     } else {
@@ -96,15 +104,10 @@ class customLinkedList {
     }
   }
 
-  reverse() {
-    if(!this.head.next) {
-      return;
-    }
-    
-  }
+
 }
 
-const myLinkedList = new customLinkedList(10);
+const myLinkedList = new customDoublyLinkedList(10);
 myLinkedList.append(5)
 myLinkedList.append(16)
 myLinkedList.prepend(1)
