@@ -12,7 +12,7 @@ class customLinkedList {
       next: null
     }
     this.tail = this.head;
-    this.lenght = 1;
+    this.length = 1;
   }
 
   append(value) {
@@ -21,9 +21,10 @@ class customLinkedList {
       value: value,
       next: null
     }*/
+    console.log('append', node.value);
     this.tail.next = node;
     this.tail = node;
-    this.lenght++;
+    this.length++;
   }
 
   prepend(value) {
@@ -34,7 +35,7 @@ class customLinkedList {
     }*/
     node.next = this.head;
     this.head = node;
-    this.lenght++;
+    this.length++;
   }
 
   printList() {
@@ -47,8 +48,35 @@ class customLinkedList {
     }
     console.log('linked list is: ', array);
   }
+  
   insert(index, value) {
+    console.log('length: ', this.length);
+    const node = new Node(value);
+    let counter = 0;
     
+    if(index === 0) {
+      this.prepend(value);
+    return;
+    }
+    if(index >= this.length) {
+      this.append(value);
+      return;
+    }
+    let currentNode = this.head;
+     console.log('In insert currentNode: ', currentNode);
+    while(counter != index) {
+      if(counter === index-1) {
+        let nextNode = currentNode.next; 
+        currentNode.next = node;
+        node.next = nextNode;
+        this.length++;
+        break;
+      } else {
+       
+        currentNode = currentNode.next;
+      }
+      counter++;
+    }
   }
 }
 
@@ -56,7 +84,10 @@ const myLinkedList = new customLinkedList(10);
 myLinkedList.append(5)
 myLinkedList.append(16)
 myLinkedList.prepend(1)
+myLinkedList.printList();
 //myLinkedList.insert(2, 99);
+//myLinkedList.insert(0, 11);
+myLinkedList.insert(40, 100);
 myLinkedList.printList();
 //console.log(myLinkedList);
 
