@@ -1,2 +1,2 @@
 language = "bash"
-run = "node linkedList/CustomDoublyLinkedList.js"
+run = "node StartJavaScript.js"

@@ -100,7 +100,15 @@ class customLinkedList {
     if(!this.head.next) {
       return;
     }
-    
+    let first = this.head;
+    let second = this.head.next;
+
+    while(second) {
+      second.next = first;
+      first = second;
+      second = second.next;
+
+    }
   }
 }
 
