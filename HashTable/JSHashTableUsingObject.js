@@ -13,4 +13,4 @@ console.log(user)
 user.address = "new address" //O(1)
 console.log(user.address)
 delete user.student; //O(1)
-console.log(user)
+console.log(user);
