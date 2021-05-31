@@ -42,7 +42,7 @@ class customLinkedList {
     const array = [];
     let currentNode = this.head;
     while(currentNode != null) {
-      console.log('currentNode', currentNode);
+      //console.log('currentNode', currentNode);
       array.push(currentNode.value);
       currentNode = currentNode.next;
     }
@@ -102,13 +102,17 @@ class customLinkedList {
     }
     let first = this.head;
     let second = this.head.next;
-
-    while(second) {
+    this.tail = this.head;
+    while(second != null) {
+      console.log('in while loop second.value: ', second.value);
+      let t = second.next;
       second.next = first;
       first = second;
-      second = second.next;
-
+      second = t;
     }
+    
+    this.head.next = null;
+    this.head = first;
   }
 }
 
@@ -116,12 +120,16 @@ const myLinkedList = new customLinkedList(10);
 myLinkedList.append(5)
 myLinkedList.append(16)
 myLinkedList.prepend(1)
-myLinkedList.printList();
+//myLinkedList.printList();
 myLinkedList.insert(2, 99);
 myLinkedList.insert(0, 11);
 myLinkedList.insert(40, 100);
 myLinkedList.printList();
 //console.log(myLinkedList);
 myLinkedList.remove(3);
+console.log('before reverse')
+myLinkedList.printList();
+myLinkedList.reverse();
+console.log('after reverse')
 myLinkedList.printList();
 //1 10 5 16 
