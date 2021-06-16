@@ -11,8 +11,34 @@ class Node {
       this.root = null;
     }
     insert(value){
-      //Code here
+      const node = new Node(value);
+      if(this.root === null) {
+        this.root = node;
+        return this;
+      } else {
+       this.findNextNode(value, this.root, node);
+      }
+      return this;
     }
+
+    findNextNode(value, node, n) {
+      if(value > node.value) {
+        if(node.right === null) {
+          node.right = n;          
+          return node;
+        } else {
+          this.findNextNode(value, node.right, n);
+        }
+      }  else {
+        if(node.left === null) {
+          node.left = n;
+          return node;
+        } else {
+          this.findNextNode(value, node.left, n);
+        }
+      } 
+    } 
+
     lookup(value){
       //Code here
     }
@@ -20,13 +46,14 @@ class Node {
   }
   
   const tree = new BinarySearchTree();
-  tree.insert(9)
-  tree.insert(4)
-  tree.insert(6)
-  tree.insert(20)
-  tree.insert(170)
-  tree.insert(15)
-  tree.insert(1)
+  console.log(tree.insert(9));
+  console.log(tree.insert(15))
+  console.log(tree.insert(6))
+  console.log(tree.insert(10)) 
+  console.log(tree.insert(12))
+  console.log(tree.insert(8))
+ // tree.insert(1) */
+  
   JSON.stringify(traverse(tree.root))
   
   //     9
