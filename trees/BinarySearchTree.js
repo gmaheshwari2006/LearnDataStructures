@@ -39,6 +39,29 @@ class Node {
       } 
     } 
 
+    insert1(value) {
+      const node = new Node(value);
+      if(this.root === null) {
+        this.root = node;       
+      } else {
+        let currentNode = this.root;
+        while(true) {
+          if(value > currentNode.value) {
+            if(!currentNode.right) {
+              currentNode.right = node;
+            } else {
+              currentNode = currentNode.right;
+            }
+          } else {
+            if(!currentNode.left) {
+              currentNode.left = node;
+            } else {
+              currentNode = currentNode.left;
+            }
+          }
+        }
+      }
+    }
     lookup(value){
       //Code here
     }
@@ -46,15 +69,20 @@ class Node {
   }
   
   const tree = new BinarySearchTree();
-  console.log(tree.insert(9));
+  /*console.log(tree.insert(9));
   console.log(tree.insert(15))
   console.log(tree.insert(6))
   console.log(tree.insert(10)) 
   console.log(tree.insert(12))
-  console.log(tree.insert(8))
+  console.log(tree.insert(8)) */
  // tree.insert(1) */
-  
-  JSON.stringify(traverse(tree.root))
+ tree.insert1(9);
+ tree.insert(15);
+ tree.insert(6);
+ tree.insert(10);
+ tree.insert(12);
+ tree.insert(8);
+  console.log(JSON.stringify(traverse(tree.root)));
   
   //     9
   //  4     20
