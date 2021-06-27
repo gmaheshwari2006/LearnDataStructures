@@ -49,12 +49,14 @@ class Node {
           if(value > currentNode.value) {
             if(!currentNode.right) {
               currentNode.right = node;
+              return this;
             } else {
               currentNode = currentNode.right;
             }
           } else {
             if(!currentNode.left) {
               currentNode.left = node;
+              return this;
             } else {
               currentNode = currentNode.left;
             }
@@ -63,7 +65,21 @@ class Node {
       }
     }
     lookup(value){
-      //Code here
+      if(!this.root) {
+        return false;
+      } 
+      let currentNode = this.root;
+      while(currentNode) {
+        if(value > currentNode.value) {
+          currentNode = currentNode.right;
+        } else if(value < currentNode.value){
+          currentNode = currentNode.left;
+        } else if(value === currentNode.value) {
+          return true;
+        }
+      }
+      return false;
+
     }
     // remove
   }
@@ -82,7 +98,7 @@ class Node {
  tree.insert(10);
  tree.insert(12);
  tree.insert(8);
-  console.log(JSON.stringify(traverse(tree.root)));
+ // console.log(JSON.stringify(traverse(tree.root)));
   
   //     9
   //  4     20
@@ -95,3 +111,4 @@ class Node {
     return tree;
   }
   
+  console.log(tree.lookup(10));
